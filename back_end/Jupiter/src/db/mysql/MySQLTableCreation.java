@@ -11,7 +11,7 @@ public class MySQLTableCreation {
 		try {
 			// Step 1 Connect to MySQL.
 			System.out.println("Connecting to " + MySQLDBUtil.URL);
-			Class.forName("com.mysql.jdbc.Driver").getConstructor().newInstance();
+			Class.forName("com.mysql.cj.jdbc.Driver").getConstructor().newInstance();
 			Connection conn = DriverManager.getConnection(MySQLDBUtil.URL);
 
 			if (conn == null) {
@@ -74,7 +74,7 @@ public class MySQLTableCreation {
 			
 			// Step 4: insert data
 			sql = "INSERT INTO users VALUES ("
-					+ "'1111', '3229c1097c00d497a0fd282d586be050', 'John', 'Smith')";
+					+ "'1111', '3229c1097c00d497a0fd282d586be050', 'Will', 'Smith')";
 			System.out.println("Executing query: " + sql);
 			stmt.executeUpdate(sql);
 
