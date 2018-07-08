@@ -1,0 +1,24 @@
+package algorithm;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import db.DBConnection;
+import db.DBConnectionFactory;
+import entity.Item;
+
+
+// Recommendation based on geo distance and similar categories.
+public class GeoRecommendation {
+	  public List<Item> recommendItems(String userId, double lat, double lon) {
+
+	  }
+
+}
