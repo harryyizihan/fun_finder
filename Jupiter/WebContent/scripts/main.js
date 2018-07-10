@@ -4,7 +4,7 @@
 	 * Variables
 	 */
 	var user_id = '1111';
-	var user_fullname = 'John';
+	var user_fullname = 'Anonymous';
 	var lng = -122.08;
 	var lat = 37.38;
 
@@ -17,8 +17,6 @@
 		$('fav-btn').addEventListener('click', loadFavoriteItems);
 		$('recommend-btn').addEventListener('click', loadRecommendedItems);
 
-		var welcomeMsg = $('welcome-msg');
-		welcomeMsg.innerHTML = 'Welcome, ' + user_fullname;
 		initGeoLocation();
 	}
 
@@ -29,6 +27,7 @@
 				maximumAge: 60000
 			});
 			showLoadingMessage('Retrieving your location...');
+			getLocationFromIP();
 		} else {
 			onLoadPositionFailed();
 		}
@@ -44,6 +43,8 @@
 	function onLoadPositionFailed() {
 		console.warn('navigator.geolocation is not available');
 		getLocationFromIP();
+		loadNearbyItems();
+
 	}
 
 	function getLocationFromIP() {
@@ -59,7 +60,14 @@
 			} else {
 				console.warn('Getting location by IP failed.');
 			}
-			loadNearbyItems();
+			
+			if ('ip' in result) {
+				user_id = result.ip;
+				user_fullname = result.ip;
+				
+				var welcomeMsg = $('welcome-msg');
+				welcomeMsg.innerHTML = 'Welcome, ' + user_fullname;
+			}
 		});
 	}
 
@@ -265,7 +273,7 @@
 				function(res) {
 					var items = JSON.parse(res);
 					if (!items || items.length === 0) {
-						showWarningMessage('No recommended item. Make sure you have favorites.');
+						showWarningMessage('No favorite items. We recommend things based on your favorites :) ');
 					} else {
 						listItems(items);
 					}
@@ -305,7 +313,7 @@
 			var result = JSON.parse(res);
 			if (result.result === 'SUCCESS') {
 				li.dataset.favorite = favorite;
-				favIcon.className = favorite ? 'fa fa-heart' : 'fa fa-heart-o';
+				favIcon.className = favorite ? 'fas fa-heart' : 'far fa-heart';
 			}
 		});
 	}
@@ -426,7 +434,7 @@
 
 		favLink.appendChild($('i', {
 			id: 'fav-icon-' + item_id,
-			className: item.favorite ? 'fa fa-heart' : 'fa fa-heart-o'
+			className: item.favorite ? 'fas fa-heart' : 'far fa-heart'
 		}));
 
 		li.appendChild(favLink);

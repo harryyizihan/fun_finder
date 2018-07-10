@@ -38,6 +38,17 @@ public class ItemHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("user_id");
+		StringBuilder sb = new StringBuilder();
+		int startIndex = 0;
+		for (int i = 0; i < userId.length() - 1; i++) {
+			if (userId.charAt(i) == '.') {
+				System.out.println("I found a .!");
+				sb.append(userId, startIndex, i);
+				startIndex = i + 1;
+			}
+		}
+		userId = (startIndex == 0) ? userId : sb.toString();
+		
 		JSONArray array = new JSONArray();
 		
 		DBConnection conn = DBConnectionFactory.getConnection();
@@ -67,7 +78,18 @@ public class ItemHistory extends HttpServlet {
 		try {
 			JSONObject input = RpcHelper.readJsonObject(request);
 			String userId = input.getString("user_id");
-
+			
+			StringBuilder sb = new StringBuilder();
+			int startIndex = 0;
+			for (int i = 0; i < userId.length() - 1; i++) {
+				if (userId.charAt(i) == '.') {
+					System.out.println("I found a .!");
+					sb.append(userId, startIndex, i);
+					startIndex = i + 1;
+				}
+			}
+			userId = (startIndex == 0) ? userId : sb.toString();
+			
 			JSONArray array = input.getJSONArray("favorite");
 			List<String> itemIds = new ArrayList<>();
 			for (int i = 0; i < array.length(); i++) {
@@ -95,7 +117,18 @@ public class ItemHistory extends HttpServlet {
 		try {
 			JSONObject input = RpcHelper.readJsonObject(request);
 			String userId = input.getString("user_id");
-
+			
+			StringBuilder sb = new StringBuilder();
+			int startIndex = 0;
+			for (int i = 0; i < userId.length() - 1; i++) {
+				if (userId.charAt(i) == '.') {
+					System.out.println("I found a .!");
+					sb.append(userId, startIndex, i);
+					startIndex = i + 1;
+				}
+			}
+			userId = (startIndex == 0) ? userId : sb.toString();
+			
 			JSONArray array = input.getJSONArray("favorite");
 			List<String> itemIds = new ArrayList<>();
 			for (int i = 0; i < array.length(); i++) {
@@ -111,6 +144,4 @@ public class ItemHistory extends HttpServlet {
 			conn.close();
 		}
 	}
-
-
 }

@@ -39,6 +39,17 @@ public class RecommendItem extends HttpServlet {
 		String userId = request.getParameter("user_id");
 		double lat = Double.parseDouble(request.getParameter("lat"));
 		double lon = Double.parseDouble(request.getParameter("lon"));
+		
+		StringBuilder sb = new StringBuilder();
+		int startIndex = 0;
+		for (int i = 0; i < userId.length() - 1; i++) {
+			if (userId.charAt(i) == '.') {
+				System.out.println("I found a .!");
+				sb.append(userId, startIndex, i);
+				startIndex = i + 1;
+			}
+		}
+		userId = (startIndex == 0) ? userId : sb.toString();
 
 		GeoRecommendation recommendation = new GeoRecommendation();
 		List<Item> items = recommendation.recommendItems(userId, lat, lon);
