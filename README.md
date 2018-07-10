@@ -1,4 +1,4 @@
-# What's the next fun?
+# funFinder
 
 http://54.215.240.44:8080/Jupiter/#
 
