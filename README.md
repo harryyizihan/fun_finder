@@ -1,6 +1,6 @@
 # funFinder
 
-http://54.215.240.44:8080/Jupiter/#
+www.iamsobored.net
 
 ## Description
 Activity Recommendation Web Application
