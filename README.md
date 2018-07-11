@@ -33,6 +33,10 @@ Recommendation page based on favorite events:
 
 <img src="https://github.com/harryyizihan/recommendation_web/blob/master/graphics/5.PNG" width="600" height="450">
 
+Flow chart:
+
+<img src="https://github.com/harryyizihan/recommendation_web/blob/master/graphics/float.PNG" width="600" height="450">
+
 Running on Amazon Web Service EC2 platform:
 
 <img src="https://github.com/harryyizihan/recommendation_web/blob/master/graphics/6.PNG" width="600" height="450">
